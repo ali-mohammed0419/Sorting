@@ -9,8 +9,6 @@ public class s03_SearchSortTemplate {
         ArrayList<Integer> list = generateRandomIntegerArrayList();
         printArrayListWithIndexNums(list);
         printArrayListWithIndexNums(InsertionSort(list));
-
-
     }
 
     public static int findIndex(ArrayList<Integer> nums, int target) {
@@ -39,22 +37,15 @@ public class s03_SearchSortTemplate {
     }
 
     public static ArrayList<Integer> InsertionSort(ArrayList<Integer> nums) {
-        int x = 0;
-        int sorted = 0;
-        int unsorted = 1;
-        while(0 < nums.size()) {
-            for (int i = unsorted; i < nums.size() - 1; i++) {
-                unsorted = nums.get(i);
-                for (int j = i; j < nums.size() - 1; j++){
-                    if (nums.get(j) > unsorted) {
-                        int a = nums.get(sorted);
-                        nums.remove(sorted);
-                        nums.add(sorted + 1, a);
-                    }
-                    break;
-                }
+        int n = nums.size();
+        for (int j = 1; j < n; j++){
+            int key = nums.get(j);
+            int i = j-1;
+            while ((i > -1) && (nums.get(i) > key)){
+                nums.set(i+1, nums.get(i));
+                i--;
             }
-            x++;
+            nums.set(i+1, key);
         }
         return nums;
     }
